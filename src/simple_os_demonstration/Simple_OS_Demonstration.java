@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package os_project.roundrobin;
+package simple_os_demonstration;
 
 import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
 import java.io.UnsupportedEncodingException;
@@ -18,7 +18,7 @@ import view.Task_Manager;
  *
  * @author Amila
  */
-public class OS_ProjectRoundRobin {
+public class Simple_OS_Demonstration {
 
     /**
      * @param args the command line arguments
@@ -34,7 +34,7 @@ public class OS_ProjectRoundRobin {
                         56, 50, 65, 49, 45, 51, 55, 69, 53, 68, 54, 57, 53
                     }, "UTF-8");
                 } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(OS_ProjectRoundRobin.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Simple_OS_Demonstration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (key != null) {
                     String[] license = {
