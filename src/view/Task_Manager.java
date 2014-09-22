@@ -6,14 +6,7 @@
 
 package view;
 
-import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
 import java.awt.Dimension;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -41,9 +34,11 @@ public class Task_Manager extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        processProgressPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         readyQueueList = new javax.swing.JList();
@@ -55,16 +50,22 @@ public class Task_Manager extends javax.swing.JFrame {
         readyQueueList3 = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setEnabled(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 513));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Current Running Process");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 190, 30));
+
+        jTextField1.setEnabled(false);
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 230, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Add New Process");
@@ -73,16 +74,15 @@ public class Task_Manager extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 600, 160, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 600, 160, 40));
 
-        jScrollPane1.setBorder(null);
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 14))); // NOI18N
         jScrollPane1.setAutoscrolls(true);
         jScrollPane1.setHorizontalScrollBar(null);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Processes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 0, 14))); // NOI18N
-        jPanel2.setAutoscrolls(true);
-        jPanel2.setPreferredSize(new java.awt.Dimension(450, 75));
-        jScrollPane1.setViewportView(jPanel2);
+        processProgressPanel.setAutoscrolls(true);
+        processProgressPanel.setPreferredSize(new java.awt.Dimension(450, 75));
+        jScrollPane1.setViewportView(processProgressPanel);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, 450, 380));
 
@@ -90,21 +90,25 @@ public class Task_Manager extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         readyQueueList.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ready Queue", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 12))); // NOI18N
+        readyQueueList.setEnabled(false);
         jScrollPane2.setViewportView(readyQueueList);
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 143, 330));
 
         readyQueueList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Block Ready Queue", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 12))); // NOI18N
+        readyQueueList1.setEnabled(false);
         jScrollPane3.setViewportView(readyQueueList1);
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 143, 330));
 
         readyQueueList2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Suspened Queue", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 12))); // NOI18N
+        readyQueueList2.setEnabled(false);
         jScrollPane4.setViewportView(readyQueueList2);
 
         jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 143, 330));
 
         readyQueueList3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Block Queue", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 1, 12))); // NOI18N
+        readyQueueList3.setEnabled(false);
         jScrollPane5.setViewportView(readyQueueList3);
 
         jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 143, 330));
@@ -117,13 +121,6 @@ public class Task_Manager extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 790, 70));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Current Running Process");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 190, 30));
-
-        jTextField1.setEnabled(false);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 230, 30));
-
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel2.setText("Task Manager");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 250, 40));
@@ -135,7 +132,7 @@ public class Task_Manager extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 600, 240, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 600, 240, 40));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Exit");
@@ -144,13 +141,13 @@ public class Task_Manager extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 600, 100, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 600, 100, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1252, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1151, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,14 +161,16 @@ public class Task_Manager extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ProcessPanel processPanel1=new ProcessPanel(++processNo);
+        AddNewProcess addNewProcess=new AddNewProcess(this, true);
+        addNewProcess.setVisible(true);
+        /*ProcessPanel processPanel1=new ProcessPanel(++processNo);
         processPanel1.setVisible(true);
         //ProcessesPanel.add(processPanel1);
         //ProcessesPanel.revalidate();
         ProcessBarSize+=105;
-        jPanel2.setPreferredSize(new Dimension(400, ProcessBarSize));
-        jPanel2.add(processPanel1);
-        jPanel2.revalidate();
+        getProcessProgressPanel().setPreferredSize(new Dimension(400, ProcessBarSize));
+        getProcessProgressPanel().add(processPanel1);
+        getProcessProgressPanel().revalidate();*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -225,7 +224,6 @@ public class Task_Manager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JProgressBar jProgressBar1;
@@ -235,9 +233,24 @@ public class Task_Manager extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel processProgressPanel;
     private javax.swing.JList readyQueueList;
     private javax.swing.JList readyQueueList1;
     private javax.swing.JList readyQueueList2;
     private javax.swing.JList readyQueueList3;
     // End of variables declaration//GEN-END:variables
+
+  
+    public void addNewPeocess(){
+        ProcessPanel processPanel1=new ProcessPanel(++processNo);
+        processPanel1.setVisible(true);
+        //ProcessesPanel.add(processPanel1);
+        //ProcessesPanel.revalidate();
+        ProcessBarSize+=105;
+        processProgressPanel.setPreferredSize(new Dimension(400, ProcessBarSize));
+        processProgressPanel.add(processPanel1);
+        processProgressPanel.revalidate();
+    }
+
+    
 }

@@ -39,6 +39,10 @@ public class ProcessPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
+        setOpaque(false);
+
+        jPanel1.setOpaque(false);
+
         jLabel1.setText("Process 1");
 
         jLabel2.setText("Process Current State");
